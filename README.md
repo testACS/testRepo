@@ -1,2 +1,0 @@
-# testRepo
-Test repository
