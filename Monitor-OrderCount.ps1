@@ -9,8 +9,9 @@
 
 Import-Module SQLPS -DisableNameChecking
 
-Start-Transcript -Path .\Get-OrderCount.log -Append
+Start-Transcript -Path .\Monitor-OrderCount.log -Append
 
+# Order Count
 Write-Output "Setting start date."
 $Start = (Get-Date).AddDays(0).AddHours(-1).AddMinutes(-5).ToString("yyyy-MM-dd HH:mm:ss")
 Write-Output "Start time is $Start."
@@ -47,5 +48,17 @@ Else
 {
                 Write-Output "Nothing to report about Order Count."   
 }
+
+# Order Created / Modified
+
+# Per Server
+Invoke-Sqlcmd -ServerInstance SQLAG1Listener.ri-prod.local -Database DCP_Transactions -Query "select top 20 * from dbo.purchaseorders where ServerId like 'WebT%' order by Created desc"
+
+# Per website
+
+# Sent to ODBMS
+
+
+
 
 Stop-Transcript -Verbose
