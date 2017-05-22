@@ -56,6 +56,8 @@ Invoke-Sqlcmd -ServerInstance SQLAG1Listener.ri-prod.local -Database DCP_Transac
 
 # Per website
 
+# Channel
+
 # Sent to ODBMS
 
 
